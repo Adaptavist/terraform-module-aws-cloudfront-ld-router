@@ -32,24 +32,28 @@ resource "aws_ssm_parameter" "legacy_domain" {
   name  = "/routing/legacy-root-domain"
   type  = "String"
   value = var.legacy_domain
+  tags  = var.tags
 }
 
 resource "aws_ssm_parameter" "feature_flag" {
   name  = "/routing/feature-flag"
   type  = "String"
   value = var.feature_flag
+  tags  = var.tags
 }
 
 resource "aws_ssm_parameter" "root_domain" {
   name  = "/routing/root-domain"
   type  = "String"
   value = var.root_domain
+  tags  = var.tags
 }
 
 resource "aws_ssm_parameter" "sdk_key" {
   name  = "/launch-darkly/sdk-key"
   type  = "SecureString"
   value = var.sdk_key
+  tags  = var.tags
 }
 
 
