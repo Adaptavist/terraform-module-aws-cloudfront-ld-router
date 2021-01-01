@@ -28,6 +28,7 @@ variable "default_cache_behavior" {
     origin_id       = string
     domain_name     = string
     allowed_methods = list(string)
+    static_backend  = bool
   })
 }
 
@@ -67,6 +68,14 @@ variable "root_domain" {
 }
 
 variable "sdk_key" {
+  type = string
+}
+
+variable "r53_zone_name" {
+  type = string
+}
+
+variable "domain" {
   type = string
 }
 

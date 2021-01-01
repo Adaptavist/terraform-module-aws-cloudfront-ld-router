@@ -8,13 +8,13 @@ resource "random_string" "random" {
 
 module "aws-cloudfront-edge-lambda" {
   source  = "Adaptavist/aws-cloudfront-edge-lambda/module"
-  version = "1.0.1"
+  version = "1.2.0"
 
   namespace              = var.namespace
   stage                  = var.stage
   name                   = var.name
   tags                   = var.tags
-  origin_mappings        = var.origin_mappings
+  custom_origin_mappings = var.origin_mappings
   default_cache_behavior = var.default_cache_behavior
   aliases                = var.aliases
   default_root_object    = var.default_root_object
@@ -24,9 +24,12 @@ module "aws-cloudfront-edge-lambda" {
 
   lambda_dist_dir = "../../lambda/dist"
   lambda_code_dir = "../../lambda/"
-  lambda_name     = "cf-ld-router-test-${random_string.random.result}"
-}
+  lambda_name     = "cf-ld-router-${random_string.random.result}"
 
+  domain               = var.domain
+  lambda_cf_event_type = "origin-request"
+  r53_zone_name        = var.r53_zone_name
+}
 
 resource "aws_ssm_parameter" "legacy_domain" {
   name  = "/routing/legacy-root-domain"
@@ -55,7 +58,6 @@ resource "aws_ssm_parameter" "sdk_key" {
   value = var.sdk_key
   tags  = var.tags
 }
-
 
 resource "aws_iam_role_policy" "lambda_exec_role_policy" {
   policy = data.aws_iam_policy_document.lambda_exec_role_policy_document.json

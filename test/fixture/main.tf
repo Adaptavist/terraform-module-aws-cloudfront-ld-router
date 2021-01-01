@@ -49,19 +49,6 @@ data "aws_route53_zone" "zone" {
   private_zone = false
 }
 
-resource "aws_route53_record" "r53_record" {
-  zone_id = data.aws_route53_zone.zone.zone_id
-  name    = local.domain
-  type    = "A"
-
-  alias {
-    name                   = module.cf_distro.cf_domain_name
-    zone_id                = module.cf_distro.cf_hosted_zone_id
-    evaluate_target_health = false
-  }
-}
-
-
 module "cf_distro" {
   source = "../../"
 
@@ -78,6 +65,7 @@ module "cf_distro" {
     origin_id       = "google"
     domain_name     = "www.google.co.uk"
     allowed_methods = local.default_allowed_methods
+    static_backend  = false
   }
 
   origin_mappings = {
@@ -93,6 +81,8 @@ module "cf_distro" {
   legacy_domain = "sr-cloud-test.connect.adaptavist.com"
   root_domain   = "scriptrunner.connect.adaptavist.com"
   sdk_key       = var.sdk_key
+  r53_zone_name = data.aws_route53_zone.zone.name
+  domain        = local.domain
 }
 
 
