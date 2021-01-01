@@ -51,7 +51,9 @@ func TestModule(t *testing.T) {
 			"key":      "modules/module-aws-cloudfront-router-edge-lambda/tests/fixures/default/" + postfix,
 			"role_arn": assumeRoleArn,
 		},
-
+		Vars: map[string]interface{}{
+			"sdk_key": ldSdkKey,
+		},
 		TerraformDir: "fixture",
 	}
 	// setup TF stack
