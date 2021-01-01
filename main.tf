@@ -22,8 +22,8 @@ module "aws-cloudfront-edge-lambda" {
   origin_protocol_policy = var.origin_protocol_policy
   acm_cert_arn           = var.acm_cert_arn
 
-  lambda_dist_dir = "../../lambda/dist"
-  lambda_code_dir = "../../lambda/"
+  lambda_dist_dir = "${path.module}/lambda/dist"
+  lambda_code_dir = "${path.module}/lambda/"
   lambda_name     = "cf-ld-router-${random_string.random.result}"
 
   domain               = var.domain
