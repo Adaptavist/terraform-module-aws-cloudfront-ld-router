@@ -79,7 +79,7 @@ module "cf_distro" {
 
   feature_flag  = "send-to-new-sr-instance"
   legacy_domain = "sr-cloud-test.connect.adaptavist.com"
-  root_domain   = "scriptrunner.connect.adaptavist.com"
+  new_domain    = "scriptrunner.connect.adaptavist.com"
   sdk_key       = var.sdk_key
   r53_zone_name = data.aws_route53_zone.zone.name
   domain        = local.domain
