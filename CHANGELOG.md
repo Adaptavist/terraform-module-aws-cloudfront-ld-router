@@ -1,3 +1,10 @@
+## [1.0.1](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/compare/v1.0.0...v1.0.1) (2021-01-04)
+
+
+### Bug Fixes
+
+* **main.tf:** using newer version of edge lambda module ([7898fda](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/commits/7898fdad3fe3710908bf2aebc7c7c49d7ea3b4ba))
+
 # 1.0.0 (2021-01-02)
 
 
