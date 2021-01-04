@@ -16,7 +16,7 @@ import log from 'lambda-log';
 
 const LEGACY_DOMAIN_SSM_PATH = "/routing/legacy-root-domain"
 const FEATURE_FLAG_SSM_PATH = "/routing/feature-flag"
-const DOMAIN_SSM_PATH = "/routing/root-domain"
+const DOMAIN_SSM_PATH = "/routing/new-domain"
 const LD_SDK_SSM_PATH = "/launch-darkly/sdk-key"
 
 const ssm : IParameterStore = new SsmParameterStore();
