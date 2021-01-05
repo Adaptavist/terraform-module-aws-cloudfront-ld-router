@@ -80,6 +80,7 @@ async function processRequest(headers: CloudFrontHeaders, request: CloudFrontReq
     }
 
     request.origin = origin;
+    request.headers['host'] = [{key:'Host', value: targetDomain}]
 
     return request;
 }
