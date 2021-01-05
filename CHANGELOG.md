@@ -1,3 +1,10 @@
+## [1.0.3](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/compare/v1.0.2...v1.0.3) (2021-01-05)
+
+
+### Bug Fixes
+
+* **app.ts:** setting host header on request ([d1cc554](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/commits/d1cc5543e2aac5ebd8c6bc3960a4508f10d757ff))
+
 ## [1.0.2](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/compare/v1.0.1...v1.0.2) (2021-01-04)
 
 
