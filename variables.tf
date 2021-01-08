@@ -33,7 +33,8 @@ variable "default_cache_behavior" {
 }
 
 variable "aliases" {
-  type = list(string)
+  type    = list(string)
+  default = []
 }
 
 variable "default_root_object" {
