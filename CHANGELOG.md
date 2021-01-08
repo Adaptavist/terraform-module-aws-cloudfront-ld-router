@@ -1,3 +1,24 @@
+## [1.0.3](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/compare/v1.0.2...v1.0.3) (2021-01-05)
+
+
+### Bug Fixes
+
+* **app.ts:** setting host header on request ([d1cc554](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/commits/d1cc5543e2aac5ebd8c6bc3960a4508f10d757ff))
+
+## [1.0.2](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/compare/v1.0.1...v1.0.2) (2021-01-04)
+
+
+### Bug Fixes
+
+* **docs:** updating docs ([fb2f48b](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/commits/fb2f48be936dc42b72989dee06cd8c28ef050c63))
+
+## [1.0.1](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/compare/v1.0.0...v1.0.1) (2021-01-04)
+
+
+### Bug Fixes
+
+* **main.tf:** using newer version of edge lambda module ([7898fda](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/commits/7898fdad3fe3710908bf2aebc7c7c49d7ea3b4ba))
+
 # 1.0.0 (2021-01-02)
 
 

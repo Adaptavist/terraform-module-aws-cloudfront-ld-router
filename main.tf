@@ -46,9 +46,9 @@ resource "aws_ssm_parameter" "feature_flag" {
 }
 
 resource "aws_ssm_parameter" "root_domain" {
-  name  = "/routing/root-domain"
+  name  = "/routing/new-domain"
   type  = "String"
-  value = var.root_domain
+  value = var.new_domain
   tags  = var.tags
 }
 
