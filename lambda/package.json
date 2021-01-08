@@ -24,7 +24,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "postbuild": "cp package.json dist/package.json && cd dist && npm install",
+    "postbuild": "cp package.json dist/package.json && cd dist && npm install --production",
     "test": "mocha -r ts-node/register test/**/*.test.ts"
   },
   "author": "",
