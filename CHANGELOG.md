@@ -1,3 +1,10 @@
+## [1.0.5](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/compare/v1.0.4...v1.0.5) (2021-01-08)
+
+
+### Bug Fixes
+
+* **lambda:** upgraded to 1.2.4 version of cf-edge-lambda module ([48777ae](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/commits/48777ae0ec386d6cda7e5f5cfc6b30e6736c2cc1))
+
 ## [1.0.4](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/compare/v1.0.3...v1.0.4) (2021-01-08)
 
 
