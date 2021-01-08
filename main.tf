@@ -8,7 +8,7 @@ resource "random_string" "random" {
 
 module "aws-cloudfront-edge-lambda" {
   source  = "Adaptavist/aws-cloudfront-edge-lambda/module"
-  version = "1.2.1"
+  version = "1.2.4"
 
   namespace              = var.namespace
   stage                  = var.stage
