@@ -3,6 +3,11 @@ import jwt_decode from "jwt-decode";
 import * as queryStringParser from 'query-string';
 import {IOriginProvider} from "./aws/origin-provider";
 
+export class UnroutableRequest extends Error {
+    constructor(reason:string) {
+        super(reason);
+    }
+}
 
 export default class OriginResolver {
 
@@ -30,7 +35,7 @@ export default class OriginResolver {
         }
 
         if(!token) {
-            throw new Error('Could not find JWT token!')
+            throw new UnroutableRequest('No JWT found in headers or query string')
         }
 
         return token

@@ -8,7 +8,7 @@ import {
 
 import {IParameterStore} from "./aws/parameter-store";
 import SsmParameterStore from "./aws/ssm-parameter-store";
-import OriginResolver from "./origin-resolver";
+import OriginResolver, {UnroutableRequest} from "./origin-resolver";
 import FeatureFlagOriginProvider from "./feature-flags/feature-flag-origin-provider";
 import LdFeatureFlagResolver from "./feature-flags/ld-feature-flag-resolver";
 import {CloudFrontOrigin} from "aws-lambda/common/cloudfront";
@@ -71,16 +71,26 @@ async function initRouterProvider() : Promise<FeatureFlagOriginProvider>{
 }
 
 async function processRequest(headers: CloudFrontHeaders, request: CloudFrontRequest, origin: CloudFrontOrigin): Promise<CloudFrontRequestResult> {
-    const targetDomain = await originResolver.determineOriginDomain(headers, request.querystring);
 
-    if(origin.custom) {
-        origin.custom.domainName = targetDomain;
-    } else if(origin.s3) {
-        origin.s3.domainName = targetDomain;
+    try {
+        const targetDomain = await originResolver.determineOriginDomain(headers, request.querystring);
+
+        if (origin.custom) {
+            origin.custom.domainName = targetDomain;
+        } else if (origin.s3) {
+            origin.s3.domainName = targetDomain;
+        }
+
+        request.origin = origin;
+        request.headers['host'] = [{key: 'Host', value: targetDomain}]
+    } catch(e) {
+        console.log(e.type)
+        if(e instanceof UnroutableRequest) {
+            console.warn(`Request was not routable, the reason was ${e.message}`)
+        } else {
+            throw e
+        }
     }
-
-    request.origin = origin;
-    request.headers['host'] = [{key:'Host', value: targetDomain}]
 
     return request;
 }
