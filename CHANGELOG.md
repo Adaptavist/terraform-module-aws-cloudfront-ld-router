@@ -1,3 +1,10 @@
+## [1.0.6](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/compare/v1.0.5...v1.0.6) (2021-01-11)
+
+
+### Bug Fixes
+
+* **build:** install production packages only ([1e7f55f](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/commits/1e7f55fad1d831bdde6dc4022db864be87be01db))
+
 ## [1.0.5](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/compare/v1.0.4...v1.0.5) (2021-01-08)
 
 
