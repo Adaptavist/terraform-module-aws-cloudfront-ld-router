@@ -1,3 +1,13 @@
+## [1.0.7](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/compare/v1.0.6...v1.0.7) (2021-01-12)
+
+
+### Bug Fixes
+
+* locking region, updated ssm path, log fixes ([7926e94](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/commits/7926e94fc4b474fb7d7cd62597d16be4500e3c71))
+* stopping requests which have no JWT throwing errors ([a4a96a9](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/commits/a4a96a973bc77ce0fed94227bd0fcbd4808628ec))
+* updating IAM policy to meet new structure ([1130c69](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/commits/1130c69b70821195ca8b95ebd0fa6fbe6f4a5870))
+* using distribution id in ssm parameters to allow for multi region ([e59b2e2](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/commits/e59b2e2ee13606b93110059172183f064e443b40))
+
 ## [1.0.6](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/compare/v1.0.5...v1.0.6) (2021-01-11)
 
 
