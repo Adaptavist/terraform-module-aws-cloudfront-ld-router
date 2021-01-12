@@ -96,6 +96,9 @@ func TestModule(t *testing.T) {
 	}
 
 	testBody("\"baseUrl\":\"https://sr-cloud-test.connect.adaptavist.com\"", "https://"+publicDomainName+"/sr-dispatcher/jira/atlassian-connect.json", userBHeaders, t)
+
+	//Hit distro without JWT and ensure we get routed to default
+	testBody("\"baseUrl\":\"https://sr-cloud-test.connect.adaptavist.com\"", "https://"+publicDomainName+"/sr-dispatcher/jira/atlassian-connect.json", defaultHeaders, t)
 }
 
 func testBody(testValue string, testURL string, headers map[string][]string, t *testing.T) {
