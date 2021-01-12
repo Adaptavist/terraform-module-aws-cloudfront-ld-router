@@ -12,7 +12,7 @@ terraform {
 }
 
 provider "aws" {
-  region = var.aws_region
+  region = "us-east-1"
 }
 
 resource "random_string" "random" {
@@ -62,16 +62,16 @@ module "cf_distro" {
   acm_cert_arn = data.aws_acm_certificate.cert.arn
 
   default_cache_behavior = {
-    origin_id       = "google"
-    domain_name     = "www.google.co.uk"
+    origin_id       = "sr"
+    domain_name     = "sr-cloud-test.connect.adaptavist.com"
     allowed_methods = local.default_allowed_methods
     static_backend  = false
   }
 
   origin_mappings = {
-    google = {
-      origin_id       = "google"
-      domain_name     = "www.google.co.uk"
+    sr = {
+      origin_id       = "sr"
+      domain_name     = "sr-cloud-test.connect.adaptavist.com"
       path_pattern    = "/*"
       allowed_methods = local.default_allowed_methods
     }

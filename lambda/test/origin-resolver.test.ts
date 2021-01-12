@@ -13,7 +13,7 @@ describe('`Ensure exception thrown when no token found`', () => {
 
   it('should throw an exception', () => {
 
-    const queryString = '/my-service/someendpoint.do'
+    const queryString = ''
 
     const headers: CloudFrontHeaders =  {
       ["content-type"]: [{
@@ -23,7 +23,7 @@ describe('`Ensure exception thrown when no token found`', () => {
     }
 
     const result = function () {originResolver.extractJWT(headers, queryString)}
-    expect(result).to.throw("Could not find JWT token!")
+    expect(result).to.throw("No JWT found in headers or query string")
   });
 });
 
@@ -31,7 +31,7 @@ describe('`Ensure exception thrown when no token found in empty URL parameter`',
 
   it('should throw an exception', () => {
 
-    const queryString = '/my-service/someendpoint.do?jwt='
+    const queryString = 'jwt='
 
     const headers: CloudFrontHeaders =  {
       ["content-type"]: [{
@@ -41,7 +41,7 @@ describe('`Ensure exception thrown when no token found in empty URL parameter`',
     }
 
     const result = function () {originResolver.extractJWT(headers, queryString)}
-    expect(result).to.throw("Could not find JWT token!")
+    expect(result).to.throw("No JWT found in headers or query string")
   });
 });
 
@@ -49,7 +49,7 @@ describe('`Ensure exception thrown when no token found in empty HTTP header`', (
 
   it('should throw an exception', () => {
 
-    const queryString = '/my-service/someendpoint.do'
+    const queryString = ''
 
     const headers: CloudFrontHeaders =  {
       ["content-type"]: [{
@@ -63,7 +63,7 @@ describe('`Ensure exception thrown when no token found in empty HTTP header`', (
     }
 
     const result = function () {originResolver.extractJWT(headers, queryString)}
-    expect(result).to.throw("Could not find JWT token!")
+    expect(result).to.throw("No JWT found in headers or query string")
   });
 });
 
@@ -91,7 +91,7 @@ describe('`Extract JWT from URL query, not first parameter`', () => {
 
   it('should return jwt token', () => {
 
-    const queryString = '/my-service/someendpoint?someOtherQueryParameter=test&jwt=' + jwt + '&name=test'
+    const queryString = 'jwt=' + jwt + '&name=test'
 
     const headers: CloudFrontHeaders =  {
       ["content-type"]: [{
@@ -109,7 +109,7 @@ describe('`Extract JWT from URL query, last parameter`', () => {
 
   it('should return jwt token', () => {
 
-    const queryString = '/my-service/someendpoint?someOtherQueryParameter=test&jwt=' + jwt + '&name=test'
+    const queryString = 'jwt=' + jwt + '&name=test'
 
     const headers: CloudFrontHeaders =  {
       ["content-type"]: [{
@@ -127,7 +127,7 @@ describe('`Extract JWT from URL query, multiple parameters`', () => {
 
   it('should return jwt token', () => {
 
-    const queryString = '/my-service/someendpoint?someOtherQueryParameter=test&jwt=' + jwt + '&name=test&jwt=' + incorrectJwt
+    const queryString = 'jwt=' + jwt + '&name=test&jwt=' + incorrectJwt
 
     const headers: CloudFrontHeaders =  {
       ["content-type"]: [{
@@ -146,7 +146,7 @@ describe('`Extract JWT from URL query - escaped coded chars`', () => {
 
   it('should return jwt token', () => {
 
-    const queryString = '/my-service/someendpoint?someOtherQueryParameter=%20test%20%3C&jwt='+ jwt + ''
+    const queryString = 'jwt='+ jwt + ''
 
     const headers: CloudFrontHeaders =  {
       ["content-type"]: [{
@@ -164,7 +164,7 @@ describe('`Extract JWT from HTTP header, first header`', () => {
 
   it('should return jwt token', () => {
 
-    const queryString = '/my-service/someendpoint?someOtherQueryParameter=%20test%20%3C'
+    const queryString = 'someOtherQueryParameter=%20test%20%3C'
 
     const headers: CloudFrontHeaders =  {
 
@@ -187,7 +187,7 @@ describe('`Extract JWT from HTTP header, not first header`', () => {
 
   it('should return jwt token', () => {
 
-    const queryString = '/my-service/someendpoint?someOtherQueryParameter=%20test%20%3C'
+    const queryString = 'someOtherQueryParameter=%20test%20%3C'
 
     const headers: CloudFrontHeaders =  {
       ["content-type"]: [{

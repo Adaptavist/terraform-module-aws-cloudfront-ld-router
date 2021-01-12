@@ -1,3 +1,7 @@
+provider "aws" {
+  region = "us-east-1"
+}
+
 data "aws_caller_identity" "current" {}
 
 resource "random_string" "random" {
@@ -32,28 +36,28 @@ module "aws-cloudfront-edge-lambda" {
 }
 
 resource "aws_ssm_parameter" "legacy_domain" {
-  name  = "/routing/legacy-root-domain"
+  name  = "/routing/${module.aws-cloudfront-edge-lambda.cf_id}/legacy-root-domain"
   type  = "String"
   value = var.legacy_domain
   tags  = var.tags
 }
 
 resource "aws_ssm_parameter" "feature_flag" {
-  name  = "/routing/feature-flag"
+  name  = "/routing/${module.aws-cloudfront-edge-lambda.cf_id}/feature-flag"
   type  = "String"
   value = var.feature_flag
   tags  = var.tags
 }
 
 resource "aws_ssm_parameter" "root_domain" {
-  name  = "/routing/new-domain"
+  name  = "/routing/${module.aws-cloudfront-edge-lambda.cf_id}/new-domain"
   type  = "String"
   value = var.new_domain
   tags  = var.tags
 }
 
 resource "aws_ssm_parameter" "sdk_key" {
-  name  = "/launch-darkly/sdk-key"
+  name  = "/routing/${module.aws-cloudfront-edge-lambda.cf_id}/launch-darkly-sdk-key"
   type  = "SecureString"
   value = var.sdk_key
   tags  = var.tags
@@ -98,8 +102,7 @@ data "aws_iam_policy_document" "lambda_exec_role_policy_document" {
     ]
 
     resources = [
-      "arn:aws:ssm:*:${data.aws_caller_identity.current.account_id}:parameter/routing/*",
-      "arn:aws:ssm:*:${data.aws_caller_identity.current.account_id}:parameter/launch-darkly/*"
+      "arn:aws:ssm:*:${data.aws_caller_identity.current.account_id}:parameter/routing/${module.aws-cloudfront-edge-lambda.cf_id}/*"
     ]
   }
 }
