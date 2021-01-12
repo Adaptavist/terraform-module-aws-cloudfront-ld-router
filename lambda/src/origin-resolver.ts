@@ -24,7 +24,7 @@ export default class OriginResolver {
 
         let token: string = '';
 
-        if(queryString.indexOf("?") !== 0) {
+        if(queryString) {
             let potentialTokenMatches = <string | string[]>queryStringParser.parse(queryString).jwt;
             token = Array.isArray(potentialTokenMatches) ? potentialTokenMatches[0] : potentialTokenMatches
         }
@@ -49,8 +49,8 @@ export default class OriginResolver {
         return decoded.iss
     }
 
-    public determineOriginDomain(headers: CloudFrontHeaders, uri : string): Promise<string> {
-        const clientKey = this.extractClientKey(this.extractJWT(headers, uri));
+    public determineOriginDomain(headers: CloudFrontHeaders, queryString : string): Promise<string> {
+        const clientKey = this.extractClientKey(this.extractJWT(headers, queryString));
         return this.originProvider.determineOrigin(clientKey);
     }
 }
