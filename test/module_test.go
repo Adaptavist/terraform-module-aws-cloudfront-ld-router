@@ -131,7 +131,8 @@ func destroyInfra(terraformOptions *terraform.Options, t *testing.T) {
 		We do not need to delete the lambdas, as they are associated with a CloudFront distribution, we can remove the state from Terraforms remote state.
 		Then when Terraform destroys the CloudFront distro the Lambdas will get cleaned up as part of that.
 	*/
-	terraform.RunTerraformCommand(t, terraformOptions, "state", "rm", "module.cf_distro.module.aws-cloudfront-edge-lambda.module.aws-lambda.aws_lambda_function.this")
+	terraform.RunTerraformCommand(t, terraformOptions, "state", "rm", "module.cf_distro.module.aws-cloudfront-edge-lambda.module.hsts_header_edge_lambda.aws_lambda_function.this")
+	terraform.RunTerraformCommand(t, terraformOptions, "state", "rm", "module.cf_distro.module.aws-cloudfront-edge-lambda.module.edge_lambda.aws_lambda_function.this")
 
 	terraform.Destroy(t, terraformOptions)
 }

@@ -1,4 +1,4 @@
-import  OriginResolver  from '../src/origin-resolver';
+import OriginResolver, {UnroutableRequest} from '../src/origin-resolver';
 import { expect } from 'chai';
 import 'mocha';
 import {CloudFrontHeaders} from "aws-lambda";
@@ -9,7 +9,6 @@ import FeatureFlagOriginProvider from "../src/feature-flags/feature-flag-origin-
 let originResolver = new OriginResolver(new FeatureFlagOriginProvider(new MockFeatureFlagResolver(), "", "", ""));
 const jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJiNDRkNTI4YS0zYjllLTExZWItYWRjMS0wMjQyYWMxMjAwMDIiLCJpYXQiOjE2MDc2ODM4MDAsImV4cCI6MTYzOTIxOTgwMCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJSb2xlIjpbIk1hbmFnZXIiLCJQcm9qZWN0IEFkbWluaXN0cmF0b3IiXX0.Bd3gimxBSkcCTf3Vog7bcO5VexrGPR7uFtx6hg72y8E'
 const incorrectJwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI0YWQzYjAxMi00MDU2LTExZWItYjM3OC0wMjQyYWMxMzAwMDIiLCJpYXQiOjE2MDgyMDI0ODQsImV4cCI6MTYzOTczODQ4NCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJSb2xlIjpbIk1hbmFnZXIiLCJQcm9qZWN0IEFkbWluaXN0cmF0b3IiXX0.KABnoJx8DFB7fc6Lsr4cgCRBrTPBw6Mo64fYPlJYdo0'
-
 describe('`Ensure exception thrown when no token found`', () => {
 
   it('should throw an exception', () => {
