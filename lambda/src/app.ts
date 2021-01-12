@@ -53,7 +53,7 @@ async function initRouterProvider(cfDistroId: string) : Promise<FeatureFlagOrigi
     const newDomain =  ssm.getParameterValue(`/routing/${cfDistroId}/new-domain`)
     const featureFlag =  ssm.getParameterValue(`/routing/${cfDistroId}/feature-flag`)
 
-    const ldSdkKey =  ssm.getParameterValue(`/launch-darkly/${cfDistroId}/sdk-key`)
+    const ldSdkKey =  ssm.getParameterValue(`/routing/${cfDistroId}/launch-darkly-sdk-key`)
 
 
     const results = await Promise.all([ldSdkKey, legacyDomain, newDomain, featureFlag]);
@@ -85,9 +85,8 @@ async function processRequest(headers: CloudFrontHeaders, request: CloudFrontReq
         request.origin = origin;
         request.headers['host'] = [{key: 'Host', value: targetDomain}]
     } catch(e) {
-        console.log(e.type)
         if(e instanceof UnroutableRequest) {
-            console.warn(`Request was not routable, the reason was ${e.message}`)
+            log.warn(`Request was not routable, the reason was ${e.message}`)
         } else {
             throw e
         }

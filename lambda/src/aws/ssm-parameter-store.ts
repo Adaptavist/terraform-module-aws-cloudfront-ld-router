@@ -2,6 +2,7 @@
 import {IParameterStore} from "./parameter-store";
 import AWS from "aws-sdk";
 import {GetParameterRequest} from "aws-sdk/clients/ssm";
+import log from 'lambda-log';
 
 const SSM_PATH_PARAM_REGION = "us-east-1"
 
@@ -16,7 +17,7 @@ export default class SsmParameterStore implements IParameterStore {
     }
 
     public getParameterValue(path: string): Promise<string> {
-        console.log(`Getting SSM parameter ${path}`)
+        log.info(`Getting SSM parameter ${path}`)
         const params:GetParameterRequest = {
             Name: path,
             WithDecryption: true

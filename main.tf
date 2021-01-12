@@ -1,3 +1,7 @@
+provider "aws" {
+  region = "us-east-1"
+}
+
 data "aws_caller_identity" "current" {}
 
 resource "random_string" "random" {
@@ -53,7 +57,7 @@ resource "aws_ssm_parameter" "root_domain" {
 }
 
 resource "aws_ssm_parameter" "sdk_key" {
-  name  = "/launch-darkly/${module.aws-cloudfront-edge-lambda.cf_id}/sdk-key"
+  name  = "/routing/${module.aws-cloudfront-edge-lambda.cf_id}/launch-darkly-sdk-key"
   type  = "SecureString"
   value = var.sdk_key
   tags  = var.tags
@@ -98,8 +102,7 @@ data "aws_iam_policy_document" "lambda_exec_role_policy_document" {
     ]
 
     resources = [
-      "arn:aws:ssm:*:${data.aws_caller_identity.current.account_id}:parameter/routing/${module.aws-cloudfront-edge-lambda.cf_id}/*",
-      "arn:aws:ssm:*:${data.aws_caller_identity.current.account_id}:parameter/launch-darkly/${module.aws-cloudfront-edge-lambda.cf_id}/*"
+      "arn:aws:ssm:*:${data.aws_caller_identity.current.account_id}:parameter/routing/${module.aws-cloudfront-edge-lambda.cf_id}/*"
     ]
   }
 }
