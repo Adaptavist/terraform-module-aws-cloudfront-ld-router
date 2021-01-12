@@ -16,7 +16,7 @@ export default class SsmParameterStore implements IParameterStore {
     }
 
     public getParameterValue(path: string): Promise<string> {
-
+        console.log(`Getting SSM parameter ${path}`)
         const params:GetParameterRequest = {
             Name: path,
             WithDecryption: true

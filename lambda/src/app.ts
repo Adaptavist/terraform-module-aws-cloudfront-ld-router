@@ -51,8 +51,10 @@ async function initRouterProvider(cfDistroId: string) : Promise<FeatureFlagOrigi
 
     const legacyDomain =  ssm.getParameterValue(`/routing/${cfDistroId}/legacy-root-domain`)
     const newDomain =  ssm.getParameterValue(`/routing/${cfDistroId}/new-domain`)
-    const ldSdkKey =  ssm.getParameterValue(`/routing/${cfDistroId}/legacy-root-domain`)
-    const featureFlag =  ssm.getParameterValue(`/launch-darkly/${cfDistroId}/feature-flag`)
+    const featureFlag =  ssm.getParameterValue(`/routing/${cfDistroId}/feature-flag`)
+
+    const ldSdkKey =  ssm.getParameterValue(`/launch-darkly/${cfDistroId}/sdk-key`)
+
 
     const results = await Promise.all([ldSdkKey, legacyDomain, newDomain, featureFlag]);
     const sdkKey = results[0];
