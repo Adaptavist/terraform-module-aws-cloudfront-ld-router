@@ -1,3 +1,15 @@
+# [1.1.0](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/compare/v1.0.7...v1.1.0) (2021-01-12)
+
+
+### Bug Fixes
+
+* stopping requests which have no JWT throwing errors ([a5b6f06](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/commits/a5b6f06aea169179d4668e52d3cbcf7a7e04432b))
+
+
+### Features
+
+* upgrading aws-cloudfront-edge-lambda to 1.3.0 ([d3f3015](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/commits/d3f301511cd2a2c9fd7746aac18e7f953af563de))
+
 ## [1.0.7](http://bitbucket.org/adaptavistlabs/module-aws-cloudfront-ld-router/compare/v1.0.6...v1.0.7) (2021-01-12)
 
 
